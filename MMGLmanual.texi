@@ -83,6 +83,9 @@ Y. Mizoguchi,
 Mathematical Aspects of Interpolation Technique for Computer Graphics,
 Forum ``Math-for-Industry'' 2012, Information Recovery and Discovery,
 22 October 2022. @uref{http://fmi2012.imi.kyushu-u.ac.jp/}
+@item [3]
+Mathematica Module for Graph Laplacians @* 
+@uref{https://github.com/ymizoguchi/MathematicaGraphLaplacian.git}
 @end table
 
 @node Graph Partitioning,Special Graphs,Introduction, Top
