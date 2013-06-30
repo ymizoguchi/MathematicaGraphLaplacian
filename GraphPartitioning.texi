@@ -1,0 +1,1350 @@
+@chapter Graph Partitioning
+
+@menu
+* Fundamental Functions::
+* Normalized Cut::
+* Matrix Operations::
+* Show Graphs::
+* Random Walks::
+* Spectral Clustering::
+@end menu
+
+@c =========
+@c --------------- 
+@node Fundamental Functions,Fundamental Functions,, Top
+@section Fundamental Functions
+
+@c --- Fundamental Functions
+@menu
+** Distance::
+** DistanceVector::
+** LabeledFindClusters::
+** DirectedToUndirected::
+@end menu
+
+@c ----------------------------------------------------
+@node Distance,DistanceVector,, Fundamental Functions
+@subsection @code{Distance}
+@findex Distance
+
+@table @t
+@item Distance[@var{x1},@var{x2}]
+:: Distance between vertices @var{x1} and @var{x2}.
+@end table
+
+@table @var
+@item x1, x2
+vertices (2D vectors)
+@item return
+length
+@end table
+
+@example
+[Example] 
+Distance[@{3,0@},@{0,4@}]
+5
+@end example
+
+@c ----------------------------------------------------
+@node DistanceVector,LabeledFindClusters,DirectedToUndirected, Fundamental Functions
+@subsection @code{DistanceVector}
+@findex DistanceVector
+
+@table @t
+@item DistanceVector[@var{x1},@var{x2}]
+:: Distance between vertices @var{x1} and @var{x2}.
+@end table
+
+@table @var
+@item x1, x2
+vertices (vectors)
+@item return
+length
+@end table
+
+@example
+[Example] 
+Distance[@{3,0,0@},@{0,0,4@}]
+5
+@end example
+
+@c ----------------------------------------------------
+@node LabeledFindClusters,DirectedToUndirected,DistanceVector, Fundamental Functions
+@subsection @code{LabeledFindClusters}
+@findex LabeledFindClusters
+
+@table @t
+@item LabeledFindClusters[@var{set},@var{n}]
+:: Divide @var{set} into @var{n} clusters using indices.
+@end table
+
+@table @var
+@item set
+set (list)
+@item return
+clusterd index set (list of list)
+@end table
+
+@example
+[Example 1] 
+LabeledFindClusters[@{1, 2, 3, 8, 9, 10@}, 2]
+@{@{1, 2, 3@}, @{4, 5, 6@}@}
+
+[Example 2]
+LabeledFindClusters[@{1, 8, 2, 9, 3, 10@}, 2]
+@{@{1, 3, 5@}, @{2, 4, 6@}@}
+@end example
+
+@c ----------------------------------------------------
+@node DirectedToUndirected,,LabeledFindClusters, Fundamental Functions
+@subsection @code{DirectedtoUndirected}
+@findex DirectedToUndirected
+
+@table @t
+@item DirectedToUndirected[@var{graph}]
+:: Translate a directed graph (@var{graph}) into an undireced graph.
+@end table
+
+@table @var
+@item graph
+directed graph (Graph)
+@item return
+undirected graph
+@end table
+
+@example
+[Example] 
+ToOrderedPairs[
+ DirectedToUndirected[FromOrderedPairs[@{@{1, 2@}, @{2, 3@}@}]]]
+@{@{2, 1@}, @{3, 2@}, @{1, 2@}, @{2, 3@}@}
+
+@image{img/graph1,4cm}
+
+@end example
+
+@c --------------- Characteristic 
+@node DelaunayEdges,DelaunayGraph,TruncateUptoMatrix, Characteristic
+@subsection @code{DelaunayEdges}
+@findex DelaunayEdges
+
+@table @t
+@item DelaunayEdges[@var{pl}]
+:: list of edges which construct a Delaunay triangulation of given points @var{pl}
+@end table
+
+@table @var
+@item pl
+list of points
+@item return
+list of edges which construct a Delaunay triangulation of given points @var{pl}
+@end table
+
+@example
+[Example] 
+DelaunayEdges[Vertices[Cycle[5]]]
+@{@{1, 2@}, @{1, 3@}, @{1, 5@}, @{2, 3@}, @{3, 4@}, @{3, 5@}, @{4, 5@}@}
+
+@image{img/DelaunayEdges,4cm}
+@end example
+
+@c --------------- Fundamental Functions 
+@node DelaunayGraph,CreateGraph,DelaunayEdges, Fundamental Functions
+@subsection @code{DelaunayGraph}
+@findex DelaunayGraph
+
+@table @t
+@item DelaunayGraph[@var{pl}]
+:: construct a graph using Delaunay triangulation of given points @var{pl}
+@end table
+
+@table @var
+@item pl
+list of points
+@item return
+graph using Delaunay triangulation of given points @var{pl}
+@end table
+
+@example
+[Example] 
+ShowLabeledGraph[DelaunayGraph[Vertices[Cycle[6]]]]
+
+@image{img/DelaunayGraph,4cm}
+@end example
+
+@c --------------- Fundamental Functions 
+@node CreateGraph,NVertices,DelaunayGraph, Fundamental Functions
+@subsection @code{CreateGraph}
+@findex CreateGraph
+
+@table @t
+@item CreateGraph[@var{vl},@var{el}]
+:: constract a graph using a list of coordinate of vertices @var{vl} and edges @var{el}
+@end table
+
+@table @var
+@item vl
+list of coordinate of vertices
+@item el
+list of connected edges (pairs of vertices)
+@item return
+graph 
+@end table
+
+@example
+[Example] 
+ShowLabeledGraph[CreateGraph[Vertices[Cycle[5]], Edges[Cycle[5]]]]
+
+@image{img/CreateGraph,4cm}
+@end example
+
+@c --------------- Fundamental Functions 
+@node NVertices,SetVertices,CreateGraph, Fundamental Functions
+@subsection @code{NVertices}
+@findex NVertices
+
+@table @t
+@item NVertices[@var{n}]
+:: list of @var{n} random coordinates 
+@end table
+
+@table @var
+@item n
+number of coordinates
+@item return
+list of @var{n} random coordinates 
+@end table
+
+@example
+[Example] 
+NVertices[5]
+@{@{0.702154, 0.314688@}, @{0.214506, -0.316029@}, @{0.121768, -0.0316586@},
+@{-0.0175943, -0.198242@}, @{0.144589, 0.577006@}@}
+@end example
+
+@c --------------- Fundamental Functions 
+@node SetVertices,NRandomGraph,NVertices, Fundamental Functions
+@subsection @code{SetVertices}
+@findex SetVertices
+
+@table @t
+@item SetVertices[@var{g},@var{v}]
+:: Force to be coordinates of vertices @var{v} in a graph @var{g}
+@end table
+
+@table @var
+@item g
+graph
+@item v
+list of coordinates of vertices
+@item return
+graph
+@end table
+
+@example
+[Example] 
+ShowLabeledGraph[SetVertices[Cycle[5],
+                 @{@{0, 0@}, @{1, 0@}, @{2, 0@}, @{2, 1@}, @{0, 1@}@}]]
+
+@image{img/SetVertices,4cm}
+@end example
+
+@c --------------- Fundamental Functions 
+@node NRandomGraph,CycleVertices,SetVertices, Fundamental Functions
+@subsection @code{NRandomGraph}
+@findex NRandomGraph
+
+@table @t
+@item NRandomGraph[@var{n},@var{p}]
+:: Construct a $var{n} vertex graph adding random edges with a proberbility @var{p}.
+@end table
+
+@table @var
+@item n
+number of vertices
+@item p
+existing proberbility of edges
+@item return
+$var{n} vertex graph adding random edges with a proberbility @var{p}.
+@end table
+
+@example
+[Example] 
+ShowLabeledGraph[NRandomGraph[20, 0.5]]
+
+@image{img/NRandomGraph,4cm}
+@end example
+
+@c --------------- Fundamental Functions 
+@node CycleVertices,CycledGraph,NRandomGraph, Fundamental Functions
+@subsection @code{CycleVertices}
+@findex CycleVertices
+
+@table @t
+@item CycleVertices[@var{n},@var{s}]
+:: list of coordinates of @var{n} vertices rotated @var{s} radian.
+@end table
+
+@table @var
+@item n
+number of coordinates
+@item s
+rotation (radian)
+@item return
+list of coordinates of @var{n} vertices rotated @var{s} radian.
+@tex
+$$
+(\cos\left({2k\pi \over n}+s\right),\sin\left({2k\pi \over n}+s\right))
+\ \ \ (k=1, \ldots, n)
+$$
+@end tex
+@end table
+
+@example
+[Example] 
+CycleVertices[4, Pi/2]
+@{@{-1, 0@}, @{0, -1@}, @{1, 0@}, @{0, 1@}@}
+@end example
+
+@c --------------- Fundamental Functions 
+@node CycledGraph,NMatrixPower,CycleVertices, Fundamental Functions
+@subsection @code{CycledGraph}
+@findex CycledGraph
+
+@table @t
+@item CycledGraph[@var{n},@var{s}]
+:: Cycle graph which vertices are roted @var{s} radian
+@end table
+
+@table @var
+@item n
+number of vertices
+@item s
+rotation (radian)
+@item return
+graph
+@end table
+
+@example
+[Example] 
+ShowLabeledGraph[Cycle[5]]
+@image{img/CycledGraph1,4cm}
+ShowLabeledGraph[CycledGraph[5, 2 Pi/5]]
+@image{img/CycledGraph2,4cm}
+@end example
+
+@c --------------- 
+@node Normalized Cut,Matrix Operations,Fundamental Functions, Top
+@section Normalized Cut
+
+@c --- Normalized Cut
+@menu
+** DS::
+** FDS::
+** WnCut::
+** FindMinimumWnCut::
+** FindMinimumWnCut::
+** GDegree::
+** GVol::
+** GVol::
+** HG::
+** FindMinimumHG::
+** Ncut::
+** FindMinimumNcut::
+** DelaunayEdges::
+** DelaunayGraph::
+** CreateGraph::
+** NVertices::
+** SetVertices::
+** NRandomGraph::
+** CycleVertices::
+** CycledGraph::
+@end menu
+
+@c --------------- Normalized Cut
+@node DS,FDS,, Normalized Cut
+@subsection @code{DS}
+@findex DS
+
+@table @t
+@item DS[@var{s},@var{g}]
+:: Set of edges between a vertex set @var{s} and its complement.
+@end table
+
+@table @var
+@item s
+a subset of the vertex set of a graph @var{g}
+@item g
+a graph
+@item return
+set of edges between @var{s} and the complement of @var{s}
+@end table
+
+@example
+[Example] 
+DS[@{1,2@},Cycle[4]]
+@{@{2,3@},@{1,4@}@}
+@end example
+
+@c --------------- Normalized Cut
+@node FDS,WnCut,DS, Normalized Cut
+@subsection @code{FDS}
+@findex FDS
+
+@table @t
+@item FDS[@var{s},@var{g}]
+:: Transition probability between a vertex set @var{s} and its complement.
+@end table
+
+@table @var
+@item s
+a subset of the vertex set of a graph @var{g}
+@item g
+a graph
+@item return
+Transition probability between @var{s} and the complement of @var{s}
+@end table
+
+@example
+[Example 1] 
+FDS[@{1,2@},Cycle[4]]
+1/4
+
+[Example 2] 
+FDS[@{1,2@},CompleteGraph[4]]
+1/3
+@end example
+
+@c --------------- Normalized Cut 
+@node WnCut,FindMinimumWnCut,FDS, Normalized Cut
+@subsection @code{WnCut}
+@findex WnCut
+
+@table @t
+@item WnCut[@var{s},@var{g}]
+:: Normalized cut value of a vertex set @var{s} of a graph @var{g}.
+@end table
+
+@table @var
+@item s
+a subset of the vertex set of a graph @var{g}
+@item g
+a graph
+@item return
+Normalized cut value of a vertex set @var{s} of a graph @var{g}.
+@end table
+
+@example
+[Example 1] 
+WnCut[@{1,2@},Cycle[4]]
+1
+
+[Example 2] 
+WnCut[@{1,2@},CompleteGraph[4]]
+4/3
+@end example
+
+@c --------------- Normalized Cut 
+@node FindMinimumWnCut,GDegree,WnCut, Normalized Cut
+@subsection @code{FindMinimumWnCut}
+@findex FindMinimumWnCut
+
+@table @t
+@item FindMinimumWnCut[@var{g}]
+:: Find a vertex set which minimize normalized cut values.
+@end table
+
+@table @var
+@item g
+a graph
+@item return
+list of normalized cut values for all subsets of the vertex set of @var{g}\\
+the list is sorted by the order of normalized cut values
+@end table
+
+@table @t
+@item FindMinimumWnCut[@var{g},@var{l}]
+:: Find a vertex set in @var{l} which minimize normalized cut values
+@end table
+
+@table @var
+@item g
+a graph
+@item l
+list of vertex sets
+@item return
+list of normalized cut values for subsets in @var{l}\\
+the list is sorted by the order of normalized cut values
+@end table
+
+@example
+[Example 1] 
+FindMinimumWnCut[Cycle[4]]
+@{@{1., @{1, 2@}@}, @{1., @{1, 4@}@},@{1., @{2, 3@}@}, @{1., @{3,4@}@},
+@{1.33333, @{1@}@}, @{1.33333, @{2@}@},@{1.33333, @{3@}@}, @{1.33333, @{4@}@},
+@{1.33333, @{1, 2, 3@}@},@{1.33333, @{1, 2, 4@}@},@{1.33333, @{1, 3, 4@}@},
+@{1.33333, @{2, 3, 4@}@},@{2., @{1, 3@}@}, @{2., @{2, 4@}@}@}
+
+[Example 2] 
+FindMinimumWnCut[Cycle[4], @{@{1@}, @{1, 2@}, @{1, 2, 3@}, @{1, 2, 3, 4@}@}]
+@{@{1., @{1, 2@}@}, @{1.33333, @{1@}@}, @{1.33333, @{1, 2, 3@}@}@}
+@end example
+
+@c --------------- Normalized Cut 
+@node GDegree,GVol,FindMinimumWnCut, Normalized Cut
+@subsection @code{GDegree}
+@findex GDegree
+
+@table @t
+@item GDegree[@var{g},@var{x}]
+:: degree of a vertex @var{x} of a graph @var{g}
+@end table
+
+@table @var
+@item g
+graph
+@item x
+vertex
+@item return
+degree of a vertex @var{x} of a graph @var{g}
+@end table
+
+@example
+[Example] 
+Degree[Cycle[4], 1]
+2
+@end example
+
+@c --------------- Normalized Cut 
+@node GVol,HG,GDegree, Normalized Cut
+@subsection @code{GVol}
+@findex GVol
+
+@table @t
+@item GVol[@var{g},@var{s}]
+:: volume of a vertex subset @var{s} of a graph @var{g}
+@end table
+
+@table @var
+@item g
+graph
+@item s
+subset of the vertex set of a graph @var{g}
+@item return
+volume of a vertex subset @var{s} of a graph @var{g}
+@end table
+
+@table @t
+@item GVol[@var{g}]
+:: volume of a vertex subset @var{s} of a graph @var{g}
+@end table
+
+@table @var
+@item g
+graph
+@item return
+volume of the all vertex subset of a graph @var{g}
+@end table
+
+@example
+[Example 1] 
+GVol[Cycle[4], {1, 2}]
+4
+
+[Example 2] 
+GVol[Cycle[4]]
+8
+@end example
+
+@c --------------- Normalized Cut 
+@node HG,FindMinimumHG,GVol, Normalized Cut
+@subsection @code{HG}
+@findex HG
+
+@table @t
+@item HG[@var{s},@var{g}]
+:: HG cut value of a vertex set @var{s} of a graph @var{g}.
+@end table
+
+@table @var
+@item s
+subset of the vertex set of a graph @var{g}
+@item g
+graph
+@item return
+HG cut value of a vertex set @var{s} of a graph @var{g}.
+@end table
+
+@example
+[Example 1] 
+HG[@{1,2@},Cycle[4]]
+1/2
+
+[Example 2] 
+HG[@{1,2@},CompleteGraph[4]]
+2/3
+@end example
+
+@c --------------- Normalized Cut 
+@node FindMinimumHG,Ncut,HG, Normalized Cut
+@subsection @code{FindMinimumHG}
+@findex FindMinimumHG
+
+@table @t
+@item FindMinimumHG[@var{g}]
+:: Find a vertex set which minimize HG cut values.
+@end table
+
+@table @var
+@item g
+graph
+@item return
+list of HG cut values for all subsets of the vertex set of @var{g}\\
+the list is sorted by the order of normalized cut values
+@end table
+
+@example
+[Example] 
+FindMinimumHG[Cycle[4]]
+@{@{0.5, @{1, 2@}@}, @{0.5, @{1, 4@}@}, @{0.5, @{2, 3@}@},
+@{0.5, @{3, 4@}@}, @{1., @{1@}@}, @{1., @{2@}@}, @{1., @{3@}@},
+@{1., @{4@}@}, @{1., @{1, 3@}@}, @{1., @{2, 4@}@}, @{1., @{1, 2, 3@}@},
+@{1., @{1, 2, 4@}@}, @{1., @{1, 3, 4@}@}, @{1., @{2, 3, 4@}@}@}
+@end example
+
+@c --------------- Normalized Cut 
+@node Ncut,FindMinimumNcut,FindMinimumHG, Normalized Cut
+@subsection @code{Ncut}
+@findex Ncut
+
+@table @t
+@item Ncut[@var{s},@var{g}]
+:: Normalized cut value of a vertex set @var{s} of a graph @var{g}.
+@end table
+
+@table @var
+@item s
+subset of the vertex set of a graph @var{g}
+@item g
+graph
+@item return
+Normalized cut value of a vertex set @var{s} of a graph @var{g}.
+@end table
+
+@example
+[Example] 
+Ncut[@{1@},Cycle[4]]
+4/3
+@end example
+
+@c --------------- Normalized Cut 
+@node FindMinimumNcut,TruncateMatrix,Ncut, Normalized Cut
+@subsection @code{FindMinimumNcut}
+@findex FindMinimumNcut
+
+@table @t
+@item FindMinimumNcut[@var{g}]
+:: Find a vertex set which minimize HG cut values.
+@end table
+
+@table @var
+@item g
+graph
+@item return
+list of normalized cut values for all subsets of the vertex set of @var{g}\\
+the list is sorted by the order of normalized cut values
+@end table
+
+@example
+[Example] 
+FindMinimumNcut[Cycle[4]]
+@{@{1., @{1, 2@}@}, @{1., @{1, 4@}@}, @{1., @{2, 3@}@}, @{1., @{3, 4@}@},
+@{1.33333, @{1@}@}, @{1.33333, @{2@}@}, @{1.33333, @{3@}@}, @{1.33333, @{4@}@},
+@{1.33333, @{1, 2, 3@}@}, @{1.33333, @{1, 2, 4@}@}, @{1.33333, @{1, 3, 4@}@},
+@{1.33333, @{2, 3, 4@}@}, @{2., @{1, 3@}@}, @{2., @{2, 4@}@}@}
+@end example
+
+@c --------------- 
+@node Matrix Operations,Show Graphs,Normalized Cut, Top
+@section Matrix Operations
+@menu
+** TruncateMatrix::
+** TruncateUptoMatrix::
+** NMatrixPower::
+** Diagonalize::
+** ComplexPower::
+** MatrixT::
+** FindMax::
+** Reordering::
+** TransposeReordering::
+@end menu
+
+@c --------------- Matrix Operations
+@node TruncateMatrix,TruncateUptoMatrix,FindMinimumNcut, Matrix Operations
+@subsection @code{TruncateMatrix}
+@findex TruncateMatrix
+
+@table @t
+@item TruncateMatrix[@var{m},@var{n}]
+:: Force to be zero row vectors except the row @var{n} in a matrix @var{m}
+@end table
+
+@table @var
+@item m
+matrix
+@item n
+row number
+@item return
+Force to be zero row vectors except the row @var{n} in a matrix @var{m}
+@end table
+
+@example
+[Example] 
+TruncateMatrix[@{@{1, 2, 3@}, @{4, 5, 6@}, @{7, 8, 9@}@}, 2]
+@{@{0, 0, 0@}, @{4, 5, 6@}, @{0, 0, 0@}@}
+@end example
+
+@c --------------- Matrix Operations
+@node TruncateUptoMatrix,DelaunayEdges,TruncateMatrix, Matrix Operations
+@subsection @code{TruncateUptoMatrix}
+@findex TruncateUptoMatrix
+
+@table @t
+@item TruncateUptoMatrix
+:: Force to be zero row vectors except the row up to @var{n} in a matrix @var{m}
+@end table
+
+@table @var
+@item m
+matrix
+@item n
+row number
+@item return
+Force to be zero row vectors except the row up to @var{n} in a matrix @var{m}
+@end table
+
+@example
+[Example] 
+TruncateUptoMatrix[@{@{1, 2, 3@}, @{4, 5, 6@}, @{7, 8, 9@}@}, 2]
+@{@{1, 2, 3@}, @{4, 5, 6@}, @{0, 0, 0@}@}
+@end example
+
+
+@c --------------- Matrix Operations
+@node NMatrixPower,Diagonalize,CycledGraph, Matrix Operations
+@subsection @code{NMatrixPower}
+@findex NMatrixPower
+
+@table @t
+@item NMatrixPower[@var{A},@var{t}]
+:: @var{t}-th power of a matrix @var{A}
+@end table
+
+@table @var
+@item A
+matrix
+@item t
+real number
+@item return
+@var{t}-th power of a matrix @var{A}
+@end table
+It is computed using Typer expansion.
+@example
+[Example] 
+NMatrixPower[@{@{1, -1@}, @{1, 1@}@}, 3]
+@{@{-2., -2.@}, @{2., -2.@}@}
+@end example
+
+@c --------------- Matrix Operations
+@node MatrixT,FindMax,NMatrixPower, Matrix Operations
+@subsection @code{MatrixT}
+@findex MatrixT
+
+@table @t
+@item MatrixT@var{A},@var{t}]
+:: @var{t}-th power of a matrix @var{A}
+@end table
+
+@table @var
+@item A
+matrix
+@item t
+real number
+@item return
+@var{t}-th power of a matrix @var{A}
+@end table
+It is computed using the diagonalization of a matrix.
+
+@example
+[Example] 
+MatrixT[@{@{1, -1@}, @{1, 1@}@}, 3]
+@{@{-2., -2.@}, @{2., -2.@}@}
+@end example
+
+@c --------------- Matrix Operations
+@node Reordering,TransposeReordering,MatrixT, Matrix Operations
+@subsection @code{Reordering}
+@findex Reordering
+
+@table @t
+@item Reordering[@var{S},@var{T}]
+:: Arrange the row vectors of @var{T} to maximize inner products
+to the corresponding row vectors of @var{S}
+@end table
+
+@table @var
+@item S, T
+matrices
+@item return
+arranged matrix
+@end table
+
+@example
+@end example
+
+@c --------------- Matrix Operations
+@node TransposeReordering,,Reordering, Matrix Operations
+@subsection @code{TransposeReordering}
+@findex TransposeReordering
+
+@table @t
+@item TransposeReordering[@var{S},@var{T}]
+:: Arrange the row vectors of @var{T} to maximize inner products
+to the corresponding row vectors of @var{S}
+@end table
+
+@table @var
+@item S, T
+matrices
+@item return
+arranged matrix
+@end table
+
+@example
+@end example
+
+@c --------------- 
+@node Show Graphs,Random Walks,Matrix Operations, Top
+@section Show Graphs
+
+@c --- Show Graphs
+@menu
+** ColoringVertex::
+** Coloring::
+** ClusterNumber::
+** ShowColoredGraphs::
+** ColoringSubset::
+@end menu
+
+@c --------------- Show Graphs 
+@node ColoringVertex,Coloring,, Show Graphs
+@subsection @code{ColoringVertex}
+@findex ColoringVertex
+
+@table @t
+@item ColoringVertex[@var{l}]
+:: Create an option formula for coloring vertices
+@end table
+
+@table @var
+@item l
+clustered list
+@item return
+an option formula for coloring vertices
+@end table
+
+@example
+[Example] 
+ColoringVertex[@{@{1, 2, 3@}, @{4, 5@}@}]
+@{@{1, 2, 3, VertexColor -> RGBColor[1, 0, 0]@},
+@{4, 5, VertexColor -> RGBColor[0, 0, 1]@}@}
+@end example
+
+@c --------------- Show Graphs 
+@node Coloring,ClusterNumber,ColoringVertex, Show Graphs
+@subsection @code{Coloring}
+@findex Coloring
+
+@table @t
+@item Coloring[@var{g}]
+:: Coloring vertices of a graph @var{g}
+@end table
+
+@table @var
+@item g
+graph
+@item return
+colored graph
+@end table
+
+@example
+[Example] 
+ShowGraph[Coloring[Cycle[4]]]
+
+@image{img/Coloring,4cm}
+@end example
+
+@c --------------- Show Graphs 
+@node ClusterNumber,ShowColoredGraphs,Coloring, Show Graphs
+@subsection @code{ClusterNumber}
+@findex ClusterNumber
+
+@table @t
+@item ClusterNumber[@var{n},@var{cl}]
+:: rerutn the position number of the cluster which includes \var{n}
+@end table
+
+@table @var
+@item n
+element
+@item cl
+cluster list
+@item return
+the position number of the cluster which includes \var{n}
+@end table
+
+@example
+[Example] 
+ClusterNumber[3, {{1, 2}, {3, 4}, {5, 6}}]
+2
+@end example
+
+@c --------------- Show Graphs 
+@node ShowColoredGraphs,ColoringSubset,ClusterNumber, Show Graphs
+@subsection @code{ShowColoredGraphs}
+@findex ShowColoredGraphs
+
+@table @t
+@item ShowColoredGraphs[@var{gl},@var{cl}]
+:: Show colored graphs in @var{gl} using a list @var{cl}
+@end table
+
+@table @var
+@item gl
+list of graphs
+@item cl
+clustered numbers
+@item return
+Show colored graphs in @var{gl} using a list @var{cl}
+@end table
+If a graph is in n-th cluster then it is colored by n-th color.
+The color list is (Red, Green, Orange, Cyan, Purple, Black).
+
+@example
+[Example] 
+ShowColoredGraphs[Table[Cycle[3], @{5@}], @{@{1, 3, 5@}, @{2, 4@}@}]
+
+@image{img/ShowColoredGraphs,,3cm}
+
+@end example
+
+@c --------------- Show Graphs 
+@node ColoringSubset,,ShowColoredGraphs, Show Graphs
+@subsection @code{ColoringSubset}
+@findex ColoringSubset
+
+@table @t
+@item ColoringSubset[@var{g},@var{a}]
+:: Coloring vertices in a subset @var{a} of the vertex set of a graph @var{g}.
+@end table
+
+@table @var
+@item g
+graph
+@item a
+subset of the vertex set of a graph @var{g}
+@item return
+Colored graph
+@end table
+
+@example
+[Example] 
+ShowLabeledGraph[ColoringSubset[Cycle[6], @{1, 2@}]]
+
+@image{img/ColoringSubset,4cm}
+@end example
+
+@c --------------- 
+@node Random Walks,Random Walks,Show Graphs, Top
+@section Random Walks
+
+@c --- Random Walks
+@menu
+** NaturalRandomWalkMatrix::
+** MyStationaryDistribution::
+** FS::
+@end menu
+
+@c --------------- Random Walks 
+@node NaturalRandomWalkMatrix,MyStationaryDistribution,, Random Walks
+@subsection @code{NaturalRandomWalkMatrix}
+@findex NaturalRandomWalkMatrix
+
+@table @t
+@item NaturalRandomWalkMatrix[@var{g}]
+:: Natural random walk matrix of a graph @var{g}
+@end table
+
+@table @var
+@item 
+graph
+@item return
+natural random walk matrix of a graph @var{g}
+@end table
+
+@example
+[Example] 
+NaturalRandomWalkMatrix[Cycle[5]]
+@{@{0, 1/2, 0, 0, 1/2@}, @{1/2, 0, 1/2, 0, 0@}, @{0, 1/2, 0, 1/2, 0@},
+@{0, 0, 1/2, 0, 1/2@}, @{1/2, 0, 0, 1/2, 0@}@}
+@end example
+
+@c --------------- Random Walks 
+@node MyStationaryDistribution,FS,NaturalRandomWalkMatrix, Random Walks
+@subsection @code{MyStationaryDistribution}
+@findex MyStationaryDistribution
+
+@table @t
+@item MyStationaryDistribution[@var{g}]
+:: Stationary distribution of the natural random walk of a graph @var{g}
+@end table
+
+@table @var
+@item g
+graph
+@item return
+stationary distribution of the natural random walk of a graph @var{g}
+@end table
+
+@example
+[Example] 
+MyStationaryDistribution[Path[5]]
+@{1/8, 1/4, 1/4, 1/4, 1/8@}
+@end example
+
+@c --------------- Random Walks 
+@node FS,FirstEigenVector,MyStationaryDistribution, Random Walks
+@subsection @code{FS}
+@findex FS
+
+@table @t
+@item FS[@var{s},@var{g}]
+:: Sum of stationary ditribution probabilities for a subset @var{g}
+@end table
+
+@table @var
+@item s
+subset of the vertex set of a graph @var{g}
+@item g
+argtype
+@item return
+sum of stationary ditribution probabilities for a subset @var{g}
+@end table
+
+@example
+[Example] 
+FS[{1, 2}, Path[5]]
+3/8
+@end example
+
+
+@c --------------- 
+@node Spectral Clustering,,Random Walks, Top
+@section Spectral Clustering
+
+@menu
+** FirstEigenVector::
+** SecondSmallEigenVector::
+** ThirdSmallEigenVector::
+** UndirectedLaplacian::
+** NormalClustering::
+** UndirectedSpectralVector::
+** UndirectedSpectralClustering::
+** UndirectedSpectralVector2::
+** UndirectedSpectralClustering2::
+** UndirectedSpectralClusteringPlus::
+** UndirectedSpectralClusteringSign::
+** PCA3Clustering::
+@end menu
+
+@c --------------- Random Walks 
+@node FirstEigenVector,,FS, Random Walks
+@subsection @code{FirstEigenVector}
+@findex FirstEigenVector
+
+@table @t
+@item FirstEigenVector[@var{M}]
+:: The first eigen vector of a matrix @var{m}.
+@end table
+
+@table @var
+@item M
+matrix
+@item return
+The first eigen vector of a matrix @var{m}.
+@end table
+
+@example
+@end example
+
+@c --------------- Eigenvalues and Eigenvectors of Matrix 
+@node SecondSmallEigenVector,ThirdSmallEigenVector,, Eigenvalues and Eigenvectors of Matrix
+@subsection @code{SecondSmallEigenVector}
+@findex SecondSmallEigenVector
+
+@table @t
+@item SecondSmallEigenVector[@var{M}]
+:: The second smallest eigen vector of a matrix @var{m}.
+@end table
+
+@table @var
+@item M
+matrix
+@item return
+The second smallest eigen vector of a matrix @var{m}.
+@end table
+
+@example
+@end example
+
+@c --------------- Eigenvalues and Eigenvectors of Matrix 
+@node ThirdSmallEigenVector,,SecondSmallEigenVector, Eigenvalues and Eigenvectors of Matrix
+@subsection @code{ThirdSmallEigenVector}
+@findex ThirdSmallEigenVector
+
+@table @t
+@item ThirdSmallEigenVector[@var{M}]
+:: The third smallest eigen vector of a matrix @var{m}.
+@end table
+
+@table @var
+@item M
+matrix
+@item return
+The third smallest eigen vector of a matrix @var{m}.
+@end table
+
+@example
+@end example
+
+@c --------------- Spectral Clustering 
+@node UndirectedLaplacian,NormalClustering,, Spectral Clustering
+@subsection @code{UndirectedLaplacian}
+@findex UndirectedLaplacian
+
+@table @t
+@item UndirectedLaplacian[@var{g}]
+:: Laplacian matrix of the adjacency matrix of a graph @var{g}
+@end table
+
+@table @var
+@item g
+graph
+@item return
+Laplacian matrix of the adjacency matrix of a graph @var{g}
+@end table
+
+@example
+[Example] 
+UndirectedLaplacian[Path[3]]
+@{@{1, -(1/Sqrt[2]), 0@}, @{-(1/Sqrt[2]), 1, -(1/Sqrt[2])@}, @{0, -(1/Sqrt[2]), 1@}@}
+@end example
+
+@c --------------- Spectral Clustering 
+@node NormalClustering,UndirectedSpectralVector,UndirectedLaplacian, Spectral Clustering
+@subsection @code{NormalClustering}
+@findex NormalClustering
+
+@table @t
+@item NormalClustering[@var{g},@var{n}]
+:: Clustering using a build in Mahtematica function.
+@end table
+
+@table @var
+@item g
+graph
+@item return
+Clustered colored graph using a build in Mahtematica function.
+@end table
+
+@example
+[Example] 
+ShowLabeledGraph[NormalClustering[Path[10], 3]]
+
+@image{img/NormalClustering,,4cm}
+@end example
+
+@c --------------- Spectral Clustering 
+@node UndirectedSpectralVector,UndirectedSpectralClustering,NormalClustering, Spectral Clustering
+@subsection @code{UndirectedSpectralVector}
+@findex UndirectedSpectralVector
+
+@table @t
+@item UndirectedSpectralVector[@var{g}]
+:: A second eigenvector of the Laplacian matrix of a graph @var{g}.
+@end table
+
+@table @var
+@item g
+graph
+@item return
+A second eigenvector of the Laplacian matrix of a graph @var{g}.
+@end table
+
+@example
+@end example
+
+@c --------------- Spectral Clustering 
+@node UndirectedSpectralClustering,UndirectedSpectralVector2,UndirectedSpectralVector, Spectral Clustering
+@subsection @code{UndirectedSpectralClustering}
+@findex UndirectedSpectralClustering
+
+@table @t
+@item UndirectedSpectralClustering[@var{g},@var{n}]
+:: Spectoral clustering of a graph @var{g}
+@end table
+
+@table @var
+@item g
+graph
+@item n
+number of clusters
+@item return
+colored graph clustered by spectral clustering method.
+@end table
+
+@example
+[Example] 
+ShowLabeledGraph[UndirectedSpectralClustering[ExactRandomGraph[10, 15], 2]]
+
+@image{img/UndirectedSpectralClustering,4cm}
+@end example
+
+@c --------------- Spectral Clustering 
+@node UndirectedSpectralVector2,UndirectedSpectralClustering2,UndirectedSpectralClustering, Spectral Clustering
+@subsection @code{UndirectedSpectralVector2}
+@findex UndirectedSpectralVector2
+
+@table @t
+@item UndirectedSpectralVector2[@var{g}]
+:: A pair of a second eigen vector and a third eigen vector
+of the Laplacian matrix of a graph @var{g}.
+@end table
+
+@table @var
+@item g
+graph
+@item return
+pair of a second eigen vector and a third eigen vector
+of the Laplacian matrix of a graph @var{g}
+@end table
+
+@example
+@end example
+
+@c --------------- Spectral Clustering 
+@node UndirectedSpectralClustering2,UndirectedSpectralClusteringPlus,UndirectedSpectralVector2, Spectral Clustering
+@subsection @code{UndirectedSpectralClustering2}
+@findex UndirectedSpectralClustering2
+
+@table @t
+@item UndirectedSpectralClustering2
+:: Spectoral clustering of a graph @var{g}
+@end table
+
+@table @var
+@item g
+graph
+@item return
+spectoral clustering of a graph @var{g}
+@end table
+This method use a second and third eigen vectors of
+the Lapalacian matrix of a graph @var{g}.
+
+@example
+g = ExactRandomGraph[10, 15];
+@{ShowLabeledGraph[UndirectedSpectralClustering[g, 3]], 
+ ShowLabeledGraph[UndirectedSpectralClustering2[g, 3]]@}
+
+@image{img/UndirectedSpectralClustering2,,4cm}
+@end example
+
+@c --------------- Spectral Clustering 
+@node UndirectedSpectralClusteringPlus,UndirectedSpectralClusteringSign,UndirectedSpectralClustering2, Spectral Clustering
+@subsection @code{UndirectedSpectralClusteringPlus}
+@findex UndirectedSpectralClusteringPlus
+
+@table @t
+@item UndirectedSpectralClusteringPlus[@var{g}]
+:: Spectoral clustering of a graph @var{g}
+@end table
+
+@table @var
+@item g
+graph
+@item return
+return value
+@end table
+This method use a sorted second eigen vector of
+the Lapalacian matrix of a graph @var{g}.
+
+@example
+@end example
+
+@c --------------- Spectral Clustering 
+@node UndirectedSpectralClusteringSign,,UndirectedSpectralClusteringPlus, Spectral Clustering
+@subsection @code{UndirectedSpectralClusteringSign}
+@findex UndirectedSpectralClusteringSign
+
+@table @t
+@item UndirectedSpectralClusteringSign[@var{g}]
+:: Spectoral clustering of a graph @var{g}
+@end table
+
+@table @var
+@item g
+graph
+@item return
+return value
+@end table
+This method use a sign of a second eigen vector of
+the Lapalacian matrix of a graph @var{g}.
+
+@example
+[Example] 
+g = ExactRandomGraph[10, 15];
+@{ShowLabeledGraph[UndirectedSpectralClusteringPlus[g]], 
+ ShowLabeledGraph[UndirectedSpectralClusteringSign[g]]@}
+
+@image{img/UndirectedSpectralClusteringSign,,4cm}
+@end example
+
+@c --------------- Clusterings 
+@node PCA3Clustering,,UndirectedSpectralClusteringSign, Spectral Clusterin
+@subsection @code{PCA3Clustering}
+@findex PCA3Clustering
+
+@table @t
+@item PCA3Clustering[@var{m},@var{n}]
+:: Clustering data @var{m} to @var{n} clusters using PCA methods
+@end table
+
+@table @var
+@item m
+data vectors
+@item n
+number of clusters
+@item return
+Clustering data @var{m} to @var{n} clusters using PCA methods
+@end table
+
+@example
+[Example] 
+gv = Table[{RandomInteger[5], RandomInteger[5]}, {10}]
+@{@{5, 3@}, @{2, 5@}, @{0, 1@}, @{2, 0@}, @{0, 4@},
+ @{1, 1@}, @{3, 2@}, @{4, 4@}, @{3, 2@}, @{1, 3@}@}
+
+ShowLabeledGraph[SetGraphOptions[CreateGraph[gv, @{@}], 
+                 ColoringVertex[PCA3Clustering[gv, 2]]]]
+
+@image{img/PCA3Clustering,4cm}
+@end example

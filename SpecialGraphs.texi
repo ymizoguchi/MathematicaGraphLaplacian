@@ -1,0 +1,265 @@
+@chapter Special Graphs
+
+@c --------------- 
+@node Roach Graph,,Lollipop Graph, Special Graphs
+@section Roach Graph and Weighted Path
+
+@c --- Roach Graph
+@menu
+** RoachGraph::
+** WeightedNormalizedLaplacian::
+** WeightedPath::
+** WeightedPathUnion::
+@end menu
+
+@node RoachGraph,WeightedNormalizedLaplacian,, Roach Graph
+@subsection @code{RoachGraph}
+@findex RoachGraph
+
+@table @t
+@item RoachGraph[@var{n},@var{k}]
+:: Roach type Graph with size @var{n} and @var{k} 
+@end table
+
+@table @var
+@item @var{n}, @var{k}
+size
+@item return
+Roach type graph
+@end table
+
+@example
+[Example] 
+ShowLabeledGraph[RoachGraph[3, 2]]
+
+@image{img/RoachGraph,,4cm}
+@end example
+
+@node WeightedNormalizedLaplacian,WeightedPath,RoachGraph, Special Graphs
+@subsection @code{WeightedNormalizedLaplacian}
+@findex WeightedNormalizedLaplacian
+
+@table @t
+@item WeightedNormalizedLaplacian[@var{M}]
+:: Weighted Laplacian matrix of a weighted adjacency matrix.
+@end table
+
+@table @var
+@item M
+weighted adjacency matrix of a graph
+@item return
+Weighted Laplacian matrix of a weighted adjacency matrix.
+@end table
+
+@example
+@end example
+
+@node WeightedPath,WeightedPathUnion,WeightedNormalizedLaplacian, Special Grphs
+@subsection @code{WeightedPath}
+@findex WeightedPath
+
+@table @t
+@item WeightedPath[@var{n},@var{k}]
+:: Weighted adjacency matrix of a path which have
+@var{n}+@var{k} vertices and @var{n} vertices have weight 2 and @var{k} vertices have weight 1.
+@end table
+
+@table @var
+@item @var{n}, @var{k}
+size
+@item return
+weighted adjacency matrix of a path
+@end table
+
+@example
+ShowLabeledGraph[FromAdjacencyMatrix[WeightedPath[3, 2]]]
+
+@image{img/WeightedPath,4cm}
+@end example
+
+@node WeightedPathUnion,,WeightedPath, Special Graphs
+@subsection @code{WeightedPathUnion}
+@findex WeightedPathUnion
+
+@table @t
+@item WeightedPathUnion[@var{n},@var{k}]
+:: Disjoint union graph of Path[@var{n}] and Path[@var{k}]
+@end table
+
+@table @var
+@item @var{n}, @var{k}
+size
+@item return
+disjoint union graph of Path[@var{n}] and Path[@var{k}]
+@end table
+
+@example
+[Example] 
+ShowLabeledGraph[FromAdjacencyMatrix[WeightedPathUnion[3, 2]]]
+
+@image{img/WeightedPathUnion,4cm}
+@end example
+
+@c --------------- 
+@node Lollipop Graph,,Roach Graph, Top
+@section Lollipop, Tree, Tree cross Path
+
+@c --- Lollipop Graph
+@menu
+** LPG::
+** LPG2::
+** DTG::
+** DTG2::
+** DTCPG::
+** DTCPG2::
+@end menu
+
+
+@c --------------- Lollipop Graph 
+@node LPG,LPG2,, Lollipop Graph
+@subsection @code{LPG}
+@findex LPG
+
+@table @t
+@item LPG[@var{n},@var{m}]
+:: Lollipop graph with size @var{n} and @var{m}.
+@end table
+
+@table @var
+@item @var{n}, @var{m}
+size
+@item return
+Lollipop graph with size @var{n} and @var{m}.
+@end table
+
+@example
+[Example] 
+ShowLabeledGraph[LPG[5, 3]]
+
+@image{img/LPG,,4cm}
+@end example
+
+@c --------------- Lollipop Graph 
+@node LPG2,DTG,LPG, Lollipop Graph
+@subsection @code{LPG2}
+@findex LPG2
+
+@table @t
+@item LPG2[@var{n},@var{m}]
+:: Modified Lollipop graph with size @var{n} and @var{m}.
+@end table
+
+@table @var
+@item @var{n}, @var{m}
+size
+@item return
+Modified Lollipop graph with size @var{n} and @var{m}.
+@end table
+
+@example
+[Example] 
+ShowLabeledGraph[LPG2[5, 3]]
+
+@image{img/LPG2,,4cm}
+@end example
+
+@c --------------- Double Tree Graph 
+@node DTG,DTG2,LPG2, Lollipop Graph
+@subsection @code{DTG}
+@findex DTG
+
+@table @t
+@item DTG[@var{n}]
+:: Tree graph with depth @var{n}
+@end table
+
+@table @var
+@item n
+depth
+@item return
+Tree graph with depth @var{n}
+@end table
+
+@example
+[Example] 
+DTG[5]
+
+@image{img/DTG,,5cm}
+@end example
+
+@c --------------- Double Tree Graph 
+@node DTG2,DTCPG,DTG, Lollipop Graph
+@subsection @code{DTG2}
+@findex DTG2
+
+@table @t
+@item DTG2[@var{n}]
+:: Double tree graph with depth @var{n}
+@end table
+
+@table @var
+@item n
+depth
+@item return
+Double tree graph with depth @var{n}
+@end table
+
+@example
+[Example] 
+DTG2[5]
+@image{img/DTG2,,5cm}
+@end example
+
+@c --------------- Dobule Tree Cross Path 
+@node DTCPG,DTCPG2,, Lollipop Graph
+@subsection @code{DTCPG}
+@findex DTCPG
+
+@table @t
+@item DTCPG[@var{n},@var{k}]
+:: Tree (depth @var{n}) cross Path (length @var{k}) Graph
+@end table
+
+@table @var
+@item n
+depth of tree
+@item k
+length of path
+@item return
+Tree (depth @var{n}) cross Path (length @var{k}) Graph
+@end table
+
+@example
+[Example] 
+DTCPG[3,5]
+
+@image{img/DTCPG,,5cm}
+@end example
+
+@c --------------- Dobule Tree Cross Path 
+@node DTCPG2,,DTCPG, Lollipop Graph
+@subsection @code{DTCPG2}
+@findex DTCPG2
+
+@table @t
+@item DTCPG2[@var{n},@var{k}]
+:: Doubl tree (depth @var{n}) cross Path (length @var{k}) Graph
+@end table
+
+@table @var
+@item n
+depth of double tree
+@item k
+length of path
+@item return
+Double tree (depth @var{n}) cross Path (length @var{k}) Graph
+@end table
+
+@example
+[Example] 
+DTCPG2[3,2]
+
+@image{img/DTCPG2,,5cm}
+@end example
+
+

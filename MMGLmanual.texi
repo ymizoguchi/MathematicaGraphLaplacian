@@ -1,0 +1,116 @@
+\input texinfo
+@iftex
+@catcode`@#=6
+@def@fref#1{@xrefX[#1,,@code{#1},,,]}
+@def@b#1{{@bf@gt #1}}
+@catcode`@#=@other
+@end iftex
+@overfullrule=0pt
+@c -*-texinfo-*-
+@comment %**start of header
+
+@setfilename MMGLmanual
+
+@settitle Mathematica Module for Graph Laplacians
+
+@comment %**end of header
+@comment %@setchapternewpage odd
+
+@titlepage
+
+@title Mathematica Module for Graph Laplacians
+@subtitle MMGL User's Manual
+@subtitle Version 1.2
+@subtitle @today{}
+
+@author  by Yoshihiro MIZOGUCHI, Kyushu University.
+@table @t
+@item Ver. 0.1
+20 December 2010
+@item Ver. 1.0
+8 June 2012
+@item Ver. 1.1
+30 June 2013
+@end table
+@vskip 0pt plus 1filll
+Copyright @copyright{} 2013 Kyushu University, All rights reserved.
+@page
+@end titlepage
+
+@synindex vr fn
+
+@node Top,, (dir), (dir)
+
+@menu
+* Introduction::
+* Graph Partitioning::
+* Special Graphs::
+@c * Interpolations::
+@c * Block Diagonalization::
+* Index::
+@end menu
+
+@c ======================================================
+@node Introduction,,Graph Partitioning, Top
+@chapter Introduction
+
+This is a Mathematica Module for analysing graphs,
+especially using Laplacian Matrices of graphs.
+This module depends on the Mathematica modules
+"Combinatorica`" and "ComputationalGeometry`".
+
+To use this package "GraphLaplacian`",
+users should set a directory where the modules is stored.
+
+@example
+[Example]
+
+SetDirectory[FileNameJoin[{$HomeDirectory, "--- Some Folder ---"}]];
+<< GraphLaplacian`;
+@end example
+
+@vskip 0pt plus 1filll
+@noindent
+This module was used and introduced in the followings:
+@table @t
+@item [1] 
+K.K.K.R. Perera, Y. Mizoguchi,
+@uref{http://j-mi.org/contents_file/contents_files/loader/0/Article/287/file/default/JMI2013A-8.pdf,Bipartition of graphs based on the normalized cut and spectral methods},
+Part I: Minimum normalized cut,
+Journal of Math-for-industory, Vol.5(2013A-8),pp.59-72.
+@item [2]
+Y. Mizoguchi,
+Mathematical Aspects of Interpolation Technique for Computer Graphics,
+Forum ``Math-for-Industry'' 2012, Information Recovery and Discovery,
+22 October 2022. @uref{http://fmi2012.imi.kyushu-u.ac.jp/}
+@end table
+
+@node Graph Partitioning,Special Graphs,Introduction, Top
+@include GraphPartitioning.texi
+
+@c @node Special Graphs,Interpolations,Graph Partitioning, Top
+@node Special Graphs,Index,Graph Partitioning, Top
+@include SpecialGraphs.texi
+
+@c @node Interpolations,Block Diagonalization,Special Graphs, Top
+@c @include Interpolations.texi
+
+@c @node Block Diagonalizatin,,Interpolations, Top
+@c @include BlockDiagonalization.texi
+
+@c @node Index,,BlockDiagonalization, Top
+@node Index,,Special Graphs, Top
+@unnumbered Index
+
+@printindex fn
+
+@c @printindex cp
+@c ky: @kindex, pg: @pindex, tp: @tindex
+@iftex
+@vfill @eject
+@end iftex
+@c @summarycontents
+@contents
+@bye
+
+

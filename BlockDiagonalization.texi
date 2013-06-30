@@ -1,0 +1,245 @@
+@chapter Block Diagonalization
+
+@c --------------- 
+@node Basic Functions, , , Top
+@section Basic Functions
+
+@c --- Block Diagonalization
+@menu
+** Perm1::
+** Split1s::
+** Split1::
+** Eigenvectors1::
+** Eigenvalues1::
+** EmbedDiagonal::
+** RotationPower::
+** MatrixPower1::
+** Swap::
+** PM::
+@end menu
+
+@c --------------- Basic Functions 
+@node Perm1,Split1s,, Basic Functions
+@subsection @code{Perm1}
+@findex Perm1
+
+@table @t
+@item Perm1
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+Perm1[   ]
+@end example
+
+@c --------------- Basic Functions 
+@node Split1s,Split1,Perm1, Basic Functions
+@subsection @code{Split1s}
+@findex Split1s
+
+@table @t
+@item Split1s
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+Split1s[   ]
+@end example
+
+@c --------------- Basic Functions 
+@node Split1,Eigenvectors1,Split1s, Basic Functions
+@subsection @code{Split1}
+@findex Split1
+
+@table @t
+@item Split1
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+Split1[   ]
+@end example
+
+@c --------------- Basic Functions 
+@node Eigenvectors1,Eigenvalues1,Split1, Basic Functions
+@subsection @code{Eigenvectors1}
+@findex Eigenvectors1
+
+@table @t
+@item Eigenvectors1
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+Eigenvectors1[   ]
+@end example
+
+@c --------------- Basic Functions 
+@node Eigenvalues1,EmbedDiagonal,Eigenvectors1, Basic Functions
+@subsection @code{Eigenvalues1}
+@findex Eigenvalues1
+
+@table @t
+@item Eigenvalues1
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+Eigenvalues1[   ]
+@end example
+
+@c --------------- Basic Functions 
+@node EmbedDiagonal,RotationPower,Eigenvalues1, Basic Functions
+@subsection @code{EmbedDiagonal}
+@findex EmbedDiagonal
+
+@table @t
+@item EmbedDiagonal
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+EmbedDiagonal[   ]
+@end example
+
+@c --------------- Basic Functions 
+@node RotationPower,MatrixPower1,EmbedDiagonal, Basic Functions
+@subsection @code{RotationPower}
+@findex RotationPower
+
+@table @t
+@item RotationPower
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+RotationPower[   ]
+@end example
+
+@c --------------- Basic Functions 
+@node MatrixPower1,Swap,RotationPower, Basic Functions
+@subsection @code{MatrixPower1}
+@findex MatrixPower1
+
+@table @t
+@item MatrixPower1
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+MatrixPower1[   ]
+@end example
+
+@c --------------- Basic Functions 
+@node Swap,PM,MatrixPower1, Basic Functions
+@subsection @code{Swap}
+@findex Swap
+
+@table @t
+@item Swap
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+Swap[   ]
+@end example
+
+@c --------------- Basic Functions 
+@node PM,,Swap, Basic Functions
+@subsection @code{PM}
+@findex PM
+
+@table @t
+@item PM
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+PM[   ]
+@end example
+
+
+
+
+
+

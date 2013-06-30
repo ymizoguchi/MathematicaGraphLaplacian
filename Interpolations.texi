@@ -1,0 +1,482 @@
+@chapter Interpolations
+@menu
+** Weighted Adjacency Matrix
+** Interpolations
+@end menu
+
+@c --------------- 
+@node Weighted Adjacency Matrix,Interpolations,, Top
+@section Weighted Adjacency Matrix
+
+@c --- Weighted adjacency matrix
+@menu
+** GraphDiagonal::
+** GraphLaplacianStandard::
+** GraphLaplacian::
+** GraphEigenvalues::
+** GraphEigenvectors::
+** AB::
+** R::
+@end menu
+
+@c --------------- Weighted adjacency matrix 
+@node GraphDiagonal,GraphLaplacianStandard,, Weighted adjacency matrix
+@subsection @code{GraphDiagonal}
+@findex GraphDiagonal
+
+@table @t
+@item GraphDiagonal
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+GraphDiagonal[   ]
+@end example
+
+@c --------------- Weighted adjacency matrix 
+@node GraphLaplacianStandard,GraphLaplacian,GraphDiagonal, Weighted adjacency matrix
+@subsection @code{GraphLaplacianStandard}
+@findex GraphLaplacianStandard
+
+@table @t
+@item GraphLaplacianStandard
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+GraphLaplacianStandard[   ]
+@end example
+
+@c --------------- Weighted adjacency matrix 
+@node GraphLaplacian,GraphEigenvalues,GraphLaplacianStandard, Weighted adjacency matrix
+@subsection @code{GraphLaplacian}
+@findex GraphLaplacian
+
+@table @t
+@item GraphLaplacian
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+GraphLaplacian[   ]
+@end example
+
+@c --------------- Weighted adjacency matrix 
+@node GraphEigenvalues,GraphEigenvectors,GraphLaplacian, Weighted adjacency matrix
+@subsection @code{GraphEigenvalues}
+@findex GraphEigenvalues
+
+@table @t
+@item GraphEigenvalues
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+GraphEigenvalues[   ]
+@end example
+
+@c --------------- Weighted adjacency matrix 
+@node GraphEigenvectors,AB,GraphEigenvalues, Weighted adjacency matrix
+@subsection @code{GraphEigenvectors}
+@findex GraphEigenvectors
+
+@table @t
+@item GraphEigenvectors
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+GraphEigenvectors[   ]
+@end example
+
+@c --------------- Weighted adjacency matrix 
+@node AB,R,GraphEigenvectors, Weighted adjacency matrix
+@subsection @code{AB}
+@findex AB
+
+@table @t
+@item AB
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+AB[   ]
+@end example
+
+@c --------------- Weighted adjacency matrix 
+@node R,,AB, Weighted adjacency matrix
+@subsection @code{R}
+@findex R
+
+@table @t
+@item R
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+R[   ]
+@end example
+
+@c --------------- 
+@node Basic operations,,Block Diagonalization, Top
+@section Basic operations
+
+@c --- Interpolation
+@menu
+** Polar::
+** Cartesian::
+** LinearInterpolate::
+** PolarInterpolate::
+** pt::
+** Cog::
+** CogTrans::
+** CompositeInterpolate::
+** AB::
+** ABPolar::
+** MM::
+** SpectralInterpolate::
+** SpectralPolarInterpolate::
+@end menu
+
+@c --------------- Interpolation 
+@node Polar,Cartesian,, Interpolation
+@subsection @code{Polar}
+@findex Polar
+
+@table @t
+@item Polar
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+Polar[   ]
+@end example
+
+@c --------------- Interpolation 
+@node Cartesian,LinearInterpolate,Polar, Interpolation
+@subsection @code{Cartesian}
+@findex Cartesian
+
+@table @t
+@item Cartesian
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+Cartesian[   ]
+@end example
+
+@c --------------- Interpolation 
+@node LinearInterpolate,PolarInterpolate,Cartesian, Interpolation
+@subsection @code{LinearInterpolate}
+@findex LinearInterpolate
+
+@table @t
+@item LinearInterpolate
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+LinearInterpolate[   ]
+@end example
+
+@c --------------- Interpolation 
+@node PolarInterpolate,pt,LinearInterpolate, Interpolation
+@subsection @code{PolarInterpolate}
+@findex PolarInterpolate
+
+@table @t
+@item PolarInterpolate
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+PolarInterpolate[   ]
+@end example
+
+@c --------------- Interpolation 
+@node pt,Cog,PolarInterpolate, Interpolation
+@subsection @code{pt}
+@findex pt
+
+@table @t
+@item pt
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+pt[   ]
+@end example
+
+@c --------------- Interpolation 
+@node Cog,CogTrans,pt, Interpolation
+@subsection @code{Cog}
+@findex Cog
+
+@table @t
+@item Cog
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+Cog[   ]
+@end example
+
+@c --------------- Interpolation 
+@node CogTrans,CompositeInterpolate,Cog, Interpolation
+@subsection @code{CogTrans}
+@findex CogTrans
+
+@table @t
+@item CogTrans
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+CogTrans[   ]
+@end example
+
+@c --------------- Interpolation 
+@node CompositeInterpolate,AB,CogTrans, Interpolation
+@subsection @code{CompositeInterpolate}
+@findex CompositeInterpolate
+
+@table @t
+@item CompositeInterpolate
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+CompositeInterpolate[   ]
+@end example
+
+@c --------------- Interpolation 
+@node AB,ABPolar,CompositeInterpolate, Interpolation
+@subsection @code{AB}
+@findex AB
+
+@table @t
+@item AB
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+AB[   ]
+@end example
+
+@c --------------- Interpolation 
+@node ABPolar,MM,AB, Interpolation
+@subsection @code{ABPolar}
+@findex ABPolar
+
+@table @t
+@item ABPolar
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+ABPolar[   ]
+@end example
+
+@c --------------- Interpolation 
+@node MM,SpectralInterpolate,ABPolar, Interpolation
+@subsection @code{MM}
+@findex MM
+
+@table @t
+@item MM
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+MM[   ]
+@end example
+
+@c --------------- Interpolation 
+@node SpectralInterpolate,SpectralPolarInterpolate,MM, Interpolation
+@subsection @code{SpectralInterpolate}
+@findex SpectralInterpolate
+
+@table @t
+@item SpectralInterpolate
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+SpectralInterpolate[   ]
+@end example
+
+@c --------------- Interpolation 
+@node SpectralPolarInterpolate,,SpectralInterpolate, Interpolation
+@subsection @code{SpectralPolarInterpolate}
+@findex SpectralPolarInterpolate
+
+@table @t
+@item SpectralPolarInterpolate
+:: Sample text
+@end table
+
+@table @var
+@item arg
+argtype
+@item return
+return value
+@end table
+
+@example
+[Example] 
+SpectralPolarInterpolate[   ]
+@end example
+
