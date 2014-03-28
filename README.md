@@ -1,8 +1,8 @@
-GraphLaplacian.m  
+* GraphLaplacian.m  
   Mathematica module for graph laplacians  
-MMGLmanual.pdf  
+* MMGLmanual.pdf  
   Manual for the module  
-Example.m  
+* Example.m  
   Example Mathematica file  
 
 First import was done on 30th Jun 2013 at 23:00.
