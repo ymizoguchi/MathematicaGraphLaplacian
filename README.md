@@ -16,3 +16,5 @@ Email: ym@imi.kyushu-u.ac.jp
 
 [2] K.K.K.R.Perera and Y.Mizoguchi, Bipartition of graphs based on the normalized cut and spectral methods, arXiv:1210.7253 [math.CO, cs.DM], 2012. http://arxiv.org/abs/1210.7253
 
+[3] Y.Mizoguchi, Graph partitioning and eigen polynomials of Laplacian matrices of roach-type graphs, Algebraic Graph Theory, Spectral Graph Theory and Related Topics, 2013. http://www.slideshare.net/yoshihiromizoguchi/graph-partitioning-and-characteristic-polynomials-of-laplacian-matrics-of-roachtype-graphs
+
