@@ -18,3 +18,4 @@ Email: ym@imi.kyushu-u.ac.jp
 
 [3] Y.Mizoguchi, Graph partitioning and eigen polynomials of Laplacian matrices of roach-type graphs, Algebraic Graph Theory, Spectral Graph Theory and Related Topics, 2013. http://www.slideshare.net/yoshihiromizoguchi/graph-partitioning-and-characteristic-polynomials-of-laplacian-matrics-of-roachtype-graphs
 
+<img src="https://raw.githubusercontent.com/ymizoguchi/MathematicaGraphLaplacian/master/img/UndirectedSpectralClustering2.jpg">
